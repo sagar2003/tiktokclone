@@ -28,7 +28,7 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
 
     ViewPager2 viewPager2;
-    ArrayList<String> paths;
+    ArrayList<StorageReference> paths;
     StorageReference reference;
 
     @Override
@@ -45,12 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(ListResult listResult) {
                 for(StorageReference ref : listResult.getItems()){
-                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            paths.add(uri.toString());
-                        }
-                    });
+                    paths.add(ref);
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
